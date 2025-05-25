@@ -33,14 +33,14 @@ class CategoriaController extends Controller
         //validación de campos requeridos
         $this->validate($request, [
             'nombre' => 'required|min:5',
-            
+
 
         ]);
 
 
         $categoria = new Categoria();
         $categoria->nombre = $request->input('nombre');
-                
+
         $categoria->save();
         return redirect()->route('categorias.index')->with(array(
             'message' => 'La nueva categoria se ha guardado correctamente'
@@ -60,7 +60,11 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //Abre el formulario que permita editar un registro
+        $categoria = Categoria::findOrFail($id);
+        return view('categoria.edit', array(
+            'categoria' => $categoria
+        ));
     }
 
     /**
@@ -68,7 +72,17 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //Guarda la información del formulario de edición
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+            
+        ]);
+        $categoria = Categoria::findOrFail($id);
+        $categoria->nombre = $request->input('nombre');
+        $categoria->save();
+        return redirect()->route('categorias.index')->with(array(
+            'message' => 'La categoria se ha actualizado correctamente'
+        ));
     }
 
     /**

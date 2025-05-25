@@ -38,7 +38,6 @@ class ClienteController extends Controller
             'password' => 'required',
             'direccion' => 'required',
             'telefono' => 'required',
-
         ]);
 
 
@@ -48,7 +47,7 @@ class ClienteController extends Controller
         $cliente->password = $request->input('password');
         $cliente->direccion = $request->input('direccion');
         $cliente->telefono = $request->input('telefono');
-        
+
         $cliente->save();
         return redirect()->route('clientes.index')->with(array(
             'message' => 'La Editorial se ha guardado correctamente'
@@ -68,16 +67,40 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //Abre el formulario que permita editar un registro
+        $cliente = Cliente::findOrFail($id);
+        return view('cliente.edit', array(
+            'cliente' => $cliente
+        ));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        //Guarda la información del formulario de edición
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+            'email' => 'required',
+            'password' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+        ]);
+        $cliente = Cliente::findOrFail($id);
+        $cliente->nombre = $request->input('nombre');
+        $cliente->email = $request->input('email');
+        $cliente->password = $request->input('password');
+        $cliente->direccion = $request->input('direccion');
+        $cliente->telefono = $request->input('telefono');
+
+        $cliente->save();
+        return redirect()->route('clientes.index')->with(array(
+            'message' => 'El cliente se ha actualizado correctamente'
+        ));
     }
+
 
     /**
      * Remove the specified resource from storage.
