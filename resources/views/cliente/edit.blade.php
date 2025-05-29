@@ -23,19 +23,19 @@
            </div>
            <div class="form-group">
                <label for="email">Email</label>
-               <textarea class="form-control" id="email" name="email">{{$cliente->email}}</textarea>
+               <input type="text" class="form-control" id="email" name="email" value="{{$cliente->email}}"/>
            </div>
            <div class="form-group">
                <label for="password">Password</label>
-               <textarea class="form-control" id="password" name="password">{{$cliente->password}}</textarea>
+               <input type="text" class="form-control" id="password" name="password" value="{{$cliente->password}}"/>
            </div>
            <div class="form-group">
                <label for="direccion">Dirección</label>
-               <input type="text" class="form-control" id="direccion" name="direccion" {{$cliente->direccion}} >
+               <input type="text" class="form-control" id="direccion" name="direccion" value="{{$cliente->direccion}}"/>
            </div>
            <div class="form-group">
                <label for="telefono">Telefono</label>
-               <input type="text" class="form-control" id="telefono" name="telefono" {{$cliente->telefono}} >
+               <input type="text" class="form-control" id="telefono" name="telefono" value="{{$cliente->telefono}}"/>
            </div>
            <button type="submit" class="btn btn-success">Guardar cliente</button>
        </form>

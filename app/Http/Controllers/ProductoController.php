@@ -21,38 +21,40 @@ class ProductoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-{
-   //Abre el formulario de captura de registros
-   return view('producto.create');
-}
+    {
+        //Abre el formulario de captura de registros
+        return view('producto.create');
+    }
 
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-//validación de campos requeridos
-$this->validate($request, [
-   'nombre' => 'required|min:5',
-   'descripcion' => 'required',
-   'precio' => 'required',
-   'tamaño' => 'required',
-   'tela' => 'required',
-   
-]);
+    {
+        //validación de campos requeridos
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+            'descripcion' => 'required',
+            'precio' => 'required',
+            'tamaño' => 'required',
+            'tela' => 'required',
+            'stock' => 'required',
+        ]);
 
+        $producto = new Producto();
+        $producto->nombre = $request->input('nombre');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->precio = $request->input('precio');
+        $producto->tamanio = $request->input('tamanio');
+        $producto->tela = $request->input('tela');
+        $producto->stock = $request->input('stock');
 
-$producto = new Producto();
-$producto->nombre = $request->input('nombre');
-$producto->domicilio = $request->input('domicilio');
-$producto->correo = $request->input('correo');
-$producto->status = 1;
-$producto->save();
-return redirect()->route('productos.index')->with(array(
-   'message' => 'La Editorial se ha guardado correctamente'
-));
-}
+        $producto->save();
+        return redirect()->route('productos.index')->with(array(
+            'message' => 'El producto se ha guardado correctamente'
+        ));
+    }
 
 
     /**
@@ -68,7 +70,11 @@ return redirect()->route('productos.index')->with(array(
      */
     public function edit(string $id)
     {
-        //
+        //Abre el formulario que permita editar un registro
+        $producto = Producto::findOrFail($id);
+        return view('producto.edit', array(
+            'producto' => $producto
+        ));
     }
 
     /**
@@ -76,7 +82,28 @@ return redirect()->route('productos.index')->with(array(
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validación de campos requeridos
+        $this->validate($request, [
+            'nombre' => 'required|min:5',
+            'descripcion' => 'required',
+            'precio' => 'required',
+            'tamaño' => 'required',
+            'tela' => 'required',
+            'stock' => 'required',
+        ]);
+
+        $producto = new Producto();
+        $producto->nombre = $request->input('nombre');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->precio = $request->input('precio');
+        $producto->tamanio = $request->input('tamanio');
+        $producto->tela = $request->input('tela');
+        $producto->stock = $request->input('stock');
+
+        $producto->save();
+        return redirect()->route('productos.index')->with(array(
+            'message' => 'El producto se ha actualizado correctamente'
+        ));
     }
 
     /**
