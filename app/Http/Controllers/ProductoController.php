@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Categoria;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -22,8 +24,13 @@ class ProductoController extends Controller
      */
     public function create()
     {
+
+        $categorias = Categoria::all();
+        $proveedors = Proveedor::all();
         //Abre el formulario de captura de registros
-        return view('producto.create');
+        return view('producto.create', compact('categorias', 'proveedors'));
+
+       
     }
 
 
@@ -40,15 +47,20 @@ class ProductoController extends Controller
             'tamaño' => 'required',
             'tela' => 'required',
             'stock' => 'required',
+            'categoria_id'=>'required|exists:categorias,id',
+            'proveedor_id'=>'required|exists:proveedors,id',
         ]);
 
         $producto = new Producto();
         $producto->nombre = $request->input('nombre');
         $producto->descripcion = $request->input('descripcion');
         $producto->precio = $request->input('precio');
-        $producto->tamanio = $request->input('tamanio');
+        $producto->tamaño = $request->input('tamaño');
         $producto->tela = $request->input('tela');
         $producto->stock = $request->input('stock');
+        $producto->categoria_id = $request->input('categoria_id');
+        $producto->proveedor_id = $request->input('proveedor_id');
+        
 
         $producto->save();
         return redirect()->route('productos.index')->with(array(
@@ -92,11 +104,11 @@ class ProductoController extends Controller
             'stock' => 'required',
         ]);
 
-        $producto = new Producto();
+        $producto = Producto::findOrFail($id);
         $producto->nombre = $request->input('nombre');
         $producto->descripcion = $request->input('descripcion');
         $producto->precio = $request->input('precio');
-        $producto->tamanio = $request->input('tamanio');
+        $producto->tamaño = $request->input('tamaño');
         $producto->tela = $request->input('tela');
         $producto->stock = $request->input('stock');
 

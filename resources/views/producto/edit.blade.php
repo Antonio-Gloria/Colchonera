@@ -30,8 +30,8 @@
                <input type="number" class="form-control" id="precio" name="precio" value="{{$producto->precio}}" />
            </div>
           <div class="form-group">
-               <label for="tamanio">Tamaño</label>
-               <input type="text" class="form-control" id="tamanio" name="tamanio" value="{{$producto->tamanio}}" />
+               <label for="tamaño">Tamaño</label>
+               <input type="text" class="form-control" id="tamaño" name="tamaño" value="{{$producto->tamaño}}" />
            </div>
            <div class="form-group">
                <label for="tela">Tela</label>

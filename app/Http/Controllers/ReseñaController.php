@@ -79,7 +79,7 @@ class ReseñaController extends Controller
             'calificacion' => 'required',
         ]);
 
-        $reseña = new reseña();
+        $reseña = reseña::findOrFail($id);
         $reseña->comentario = $request->input('comentario');
         $reseña->calificacion = $request->input('calificacion');
 

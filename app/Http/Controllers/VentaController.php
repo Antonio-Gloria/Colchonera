@@ -73,7 +73,7 @@ class VentaController extends Controller
             'estado' => 'required',
         ]);
 
-        $venta = new Venta();
+        $venta = Venta::findOrFail($id);
         $venta->fecha = $request->input('fecha');
         $venta->total = $request->input('total');
         $venta->estado = $request->input('estado');

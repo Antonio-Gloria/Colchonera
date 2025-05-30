@@ -87,7 +87,7 @@ class ProveedorController extends Controller
 
         ]);
 
-        $proveedor = new Proveedor();
+        $proveedor = Proveedor::findOrFail($id);
         $proveedor->nombre = $request->input('nombre');
         $proveedor->telefono = $request->input('telefono');
         $proveedor->email = $request->input('email');

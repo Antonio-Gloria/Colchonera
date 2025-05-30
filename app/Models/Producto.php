@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    //
+    public function categoria() //Esto lo agregué para ver si puedo obtener el nombre el tipo de servicio seleccionado
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class, 'proveedor_id');
+    }
 }
