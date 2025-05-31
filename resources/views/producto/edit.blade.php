@@ -41,6 +41,31 @@
                <label for="stock">Stock</label>
                <input type="text" class="form-control" id="stock" name="stock" value="{{$producto->stock}}" />
            </div>
+           <div class="form-group mb-3">
+                    <label for="categoria_id">Categoría</label>
+                    <select class="form-control" id="categoria_id" name="categoria_id" required>
+                        <option value="" disabled>Selecciona una categoría</option>
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}" {{ old('categoria_id', $producto->categoria_id) == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
+                        @endforeach
+                    </select>
+                    @error('categoria_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="proveedor_id">Proveedor</label>
+                    <select class="form-control" id="proveedor_id" name="proveedor_id" required>
+                        <option value="" disabled>Selecciona un proveedor</option>
+                        @foreach ($proveedors as $proveedor)
+                            <option value="{{ $proveedor->id }}" {{ old('proveedor_id', $producto->proveedor_id) == $proveedor->id ? 'selected' : '' }}>{{ $proveedor->nombre }}</option>
+                        @endforeach
+                    </select>
+                    @error('proveedor_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
            <button type="submit" class="btn btn-success">Actualizar producto</button>
        </form>
    </div>

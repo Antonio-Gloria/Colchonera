@@ -17,6 +17,7 @@ return new class extends Migration
             $table->timestamp('fecha')->useCurrent();
             $table->decimal('total', 10, 2);
             $table->enum('estado', ['completado', 'enviado', 'cancelado'])->default('completado');
+            $table->integer('status');
             $table->timestamps();
         });
     }

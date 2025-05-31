@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reseñas', function (Blueprint $table) {
+        Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('venta_id')->constrained('ventas')->onDelete('cascade');
             $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
-            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
-            $table->text('comentario')->nullable();
-            $table->integer('calificacion')->unsigned()->between(1, 5);
+            $table->integer('cantidad')->default(1);
+            $table->decimal('precio_unitario', 10, 2);
+            $table->integer('status');
             $table->timestamps();
 
-            $table->unique(['producto_id', 'cliente_id']);
+            $table->unique(['venta_id', 'producto_id']);
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reseñas');
+        Schema::dropIfExists('detalle_ventas');
     }
 };

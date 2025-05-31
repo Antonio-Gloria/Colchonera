@@ -14,7 +14,39 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::where('status', 1)->get();
+        return view('cliente.index', ['clientes' => $this->cargarDT($clientes)]);
+    }
+
+    private function cargarDT($consulta)
+    {
+        $clientes = [];
+        foreach ($consulta as $key => $value) {
+            $actualizar = route('clientes.edit', $value['id']);
+            $acciones = '
+           <div class="btn-acciones">
+               <div class="btn-circle">
+                   <a href="' . $actualizar . '" role="button" class="btn btn-success" title="Actualizar">
+                       <i class="far fa-edit"></i>
+                   </a>
+                    <a role="button" class="btn btn-danger" onclick="modal(' . $value['id'] . ')" data-bs-toggle="modal" data-bs-target="#exampleModal"">
+                       <i class="far fa-trash-alt"></i>
+                   </a>
+               </div>
+           </div>';
+
+
+            $clientes[$key] = array(
+                $acciones,
+                $value['id'],
+                $value['nombre'],
+                $value['email'],
+                $value['password'],
+                $value['direccion'],
+                $value['telefono']
+            );
+        }
+        return $clientes;
     }
 
     /**
@@ -47,7 +79,7 @@ class ClienteController extends Controller
         $cliente->password = $request->input('password');
         $cliente->direccion = $request->input('direccion');
         $cliente->telefono = $request->input('telefono');
-
+        $cliente->status = 1;
         $cliente->save();
         return redirect()->route('clientes.index')->with(array(
             'message' => 'La Editorial se ha guardado correctamente'
@@ -108,5 +140,17 @@ class ClienteController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function deleteCliente($cliente_id)
+    {
+        $cliente = Cliente::find($cliente_id);
+        if ($cliente) {
+            $cliente->status = 0;
+            $cliente->update();
+            return redirect()->route('clientes.index')->with("message", "El cliente se ha eliminado correctamente");
+        } else {
+            return redirect()->route('clientes.index')->with("message", "El cliente que trata de eliminar no existe");
+        }
     }
 }

@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reseña;
+use App\Models\Producto;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 class ReseñaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // Requiere autenticación para todos los métodos
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $reseñas = Reseña::active()->with(['producto', 'cliente'])->get();
+        return view('reseña.index', compact('reseñas'));
     }
 
     /**
@@ -22,30 +29,36 @@ class ReseñaController extends Controller
      */
     public function create()
     {
-        //Abre el formulario de captura de registros
-        return view('reseña.create');
+        $productos = Producto::all();
+        $clientes = Cliente::all();
+        return view('reseña.create', compact('productos', 'clientes'));
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //validación de campos requeridos
         $this->validate($request, [
-            'comentario' => 'required',
-            'calificacion' => 'required',
+            'comentario' => 'required|string|max:1000',
+            'calificacion' => 'required|integer|min:1|max:5',
+            'producto_id' => 'required|exists:productos,id',
+            'cliente_id' => 'required|exists:clientes,id',
         ]);
 
-        $reseña = new reseña();
+        if (Auth::id() !== $request->input('cliente_id')) {
+            abort(403, 'Acción no autorizada.');
+        }
+
+        $reseña = new Reseña();
         $reseña->comentario = $request->input('comentario');
         $reseña->calificacion = $request->input('calificacion');
-
+        $reseña->producto_id = $request->input('producto_id');
+        $reseña->cliente_id = $request->input('cliente_id');
+        $reseña->status = 1; // Activo por defecto
         $reseña->save();
-        return redirect()->route('reseñas.index')->with(array(
-            'message' => 'La reseña se ha guardado correctamente'
-        ));
+
+        return redirect()->route('reseñas.index')->with('message', 'La reseña se ha guardado correctamente');
     }
 
     /**
@@ -53,7 +66,8 @@ class ReseñaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reseña = Reseña::active()->with(['producto', 'cliente'])->findOrFail($id);
+        return view('reseña.show', compact('reseña'));
     }
 
     /**
@@ -61,11 +75,15 @@ class ReseñaController extends Controller
      */
     public function edit(string $id)
     {
-        //Abre el formulario que permita editar un registro
-        $reseña = Reseña::findOrFail($id);
-        return view('reseña.edit', array(
-            'reseña' => $reseña
-        ));
+        $reseña = Reseña::active()->findOrFail($id);
+        $productos = Producto::all();
+        $clientes = Cliente::all();
+
+        if (Auth::id() !== $reseña->cliente_id) {
+            abort(403, 'Acción no autorizada.');
+        }
+
+        return view('reseña.edit', compact('reseña', 'productos', 'clientes'));
     }
 
     /**
@@ -73,27 +91,41 @@ class ReseñaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //validación de campos requeridos
         $this->validate($request, [
-            'comentario' => 'required',
-            'calificacion' => 'required',
+            'comentario' => 'required|string|max:1000',
+            'calificacion' => 'required|integer|min:1|max:5',
+            'producto_id' => 'required|exists:productos,id',
+            'cliente_id' => 'required|exists:clientes,id',
         ]);
 
-        $reseña = reseña::findOrFail($id);
+        $reseña = Reseña::active()->findOrFail($id);
+
+        if (Auth::id() !== $reseña->cliente_id) {
+            abort(403, 'Acción no autorizada.');
+        }
+
         $reseña->comentario = $request->input('comentario');
         $reseña->calificacion = $request->input('calificacion');
-
+        $reseña->producto_id = $request->input('producto_id');
+        $reseña->cliente_id = $request->input('cliente_id');
         $reseña->save();
-        return redirect()->route('reseñas.index')->with(array(
-            'message' => 'La modificación de la reseña se ha guardado correctamente'
-        ));
+
+        return redirect()->route('reseñas.index')->with('message', 'La modificación de la reseña se ha guardado correctamente');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage (logical delete).
      */
     public function destroy(string $id)
     {
-        //
+        $reseña = Reseña::active()->findOrFail($id);
+
+        if (Auth::id() !== $reseña->cliente_id) {
+            abort(403, 'Acción no autorizada.');
+        }
+
+        $reseña->update(['status' => 2]); // Borrado lógico
+
+        return redirect()->route('reseñas.index')->with('message', 'La reseña se ha eliminado correctamente');
     }
 }

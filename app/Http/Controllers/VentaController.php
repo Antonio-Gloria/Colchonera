@@ -34,7 +34,7 @@ class VentaController extends Controller
         $venta->fecha = $request->input('fecha');
         $venta->total = $request->input('total');
         $venta->estado = $request->input('estado');
-
+        $venta->status = 1;
         $venta->save();
         return redirect()->route('proveedors.index')->with(array(
             'message' => 'La venta se ha guardado correctamente'

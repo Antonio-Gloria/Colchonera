@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('tela', 50);
             $table->integer('stock')->default(0);
             $table->foreignId('categoria_id')->constrained('categorias');
-            $table->foreignId('proveedor_id')->constrained('proveedors');
+            $table->foreignId('proveedor_id')->constrained();
+            $table->integer('status');
             $table->timestamps();
 
             

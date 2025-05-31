@@ -320,6 +320,13 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+        /*[
+            'text' => 'pages',
+            'url' => 'admin/pages',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 4,
+            'label_color' => 'success',
+        ],*/
         [
             'text' => 'pages',
             'url' => 'admin/pages',
@@ -327,6 +334,21 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+        /*[
+            'text' => 'Editoriales',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'editoriales.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'editoriales.create',
+                ],
+            ],
+        ],*/
+        ['header' => 'account_settings'],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

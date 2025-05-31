@@ -85,7 +85,7 @@ class DetalleVentaController extends Controller
         $detalleventa = DetalleVenta::findOrFail($id);
         $detalleventa->cantidad = $request->input('cantidad');
         $detalleventa->precio_unitario = $request->input('precio_unitario');
-
+        $detalleventa->status = 1;
         $detalleventa->save();
         return redirect()->route('detalleventas.index')->with(array(
             'message' => 'El detalle de la venta se ha actualizado correctamente'
