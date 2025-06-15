@@ -1,17 +1,14 @@
 @extends('adminlte::page')
-
 @section('css')
-    <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
+<link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+
+
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])   
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
-    <style>
-        div.dt-buttons {
-            display: inline-block !important;
-        }
-    </style>
 @endsection
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -22,11 +19,11 @@
             @endif
         </div>
         <div class="row">
-            <h2>Lista de Categorías</h2>
+            <h2>Lista de Ventas</h2>
             <hr>
             <br>
             <p align="right">
-                <a href="{{ route('categorias.create') }}" class="btn btn-success">Agregar Categoría</a>
+                <a href="{{ route('ventas.create') }}" class="btn btn-success">Agregar Venta</a>
                 <a href="{{ route('home') }}" class="btn btn-primary">
                     Regresar
                 </a>
@@ -35,8 +32,11 @@
                 <thead>
                     <tr>
                         <th>Acciones</th>
-                        <th>Id Categoría</th>
+                        <th>Id Venta</th>
                         <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +54,8 @@
                 </div>
                 <div class="modal-body">
                     <span id="nombre"></span>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -63,33 +65,34 @@
         </div>
     </div>
 @endsection
-
+<!-- Button trigger modal -->
 @section('js')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
     <script>
         function modal(parametro) {
             console.log(parametro);
             $('#nombre').html(parametro);
-            let url = "{{ route('deleteCategoria', ':id') }}";
+            let url = "{{ route('deleteVenta', ':id') }}";
             url = url.replace(':id', parametro);
             document.getElementById('borrar').href = url;
         }
-        
-        var data = @json($categorias);
-        
+        var data = @json($ventas);
         $(document).ready(function() {
+            // version de jquery
             console.log($.fn.jquery);
+
+
             $('#example').DataTable({
                 "data": data,
                 "pageLength": 100,
-                "order": [[1, "asc"]],
+                "order": [
+                    [1, "asc"]
+                ],
                 "language": {
                     "sProcessing": "Procesando...",
                     "sLengthMenu": "Mostrar _MENU_ registros",
@@ -114,19 +117,18 @@
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
                 },
-                "responsive": true,
-                "dom": 'Bfrtip',
-                "buttons": [
+                responsive: true,
+                dom: '<"col-xs-3"l><"col-xs-5"B><"col-xs-4"f>rtip',
+                buttons: [
                     'copy', 'excel',
                     {
                         extend: 'pdfHtml5',
                         orientation: 'landscape',
-                        pageSize: 'LETTER'
+                        pageSize: 'LETTER',
                     }
                 ]
-            });
+            })
         });
-
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             "portugues-pre": function(data) {
                 var a = 'a';
@@ -136,12 +138,32 @@
                 var u = 'u';
                 var c = 'c';
                 var special_letters = {
-                    "Á": a, "á": a, "Ã": a, "ã": a, "À": a, "à": a,
-                    "É": e, "é": e, "Ê": e, "ê": e,
-                    "Í": i, "í": i, "Î": i, "î": i,
-                    "Ó": o, "ó": o, "Õ": o, "õ": o, "Ô": o, "ô": o,
-                    "Ú": u, "ú": u, "Ü": u, "ü": u,
-                    "ç": c, "Ç": c
+                    "Á": a,
+                    "á": a,
+                    "Ã": a,
+                    "ã": a,
+                    "À": a,
+                    "à": a,
+                    "É": e,
+                    "é": e,
+                    "Ê": e,
+                    "ê": e,
+                    "Í": i,
+                    "í": i,
+                    "Î": i,
+                    "î": i,
+                    "Ó": o,
+                    "ó": o,
+                    "Õ": o,
+                    "õ": o,
+                    "Ô": o,
+                    "ô": o,
+                    "Ú": u,
+                    "ú": u,
+                    "Ü": u,
+                    "ü": u,
+                    "ç": c,
+                    "Ç": c
                 };
                 for (var val in special_letters)
                     data = data.split(val).join(special_letters[val]).toLowerCase();
@@ -156,3 +178,6 @@
         });
     </script>
 @endsection
+
+
+

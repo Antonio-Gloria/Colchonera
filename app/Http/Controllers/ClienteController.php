@@ -153,4 +153,6 @@ class ClienteController extends Controller
             return redirect()->route('clientes.index')->with("message", "El cliente que trata de eliminar no existe");
         }
     }
+
+    
 }

@@ -36,3 +36,17 @@ Route::get('/delete-producto/{producto_id}', [
     'middleware' => 'auth',
     'uses' => '\App\Http\Controllers\ProductoController@deleteProducto'
 ]);
+Route::get('/delete-venta/{venta_id}', [
+    'as' => 'deleteVenta',
+    'middleware' => 'auth',
+    'uses' => '\App\Http\Controllers\VentaController@deleteVenta'
+]);
+Route::get('/delete-detalleventa/{detalleventa_id}', [
+    'as' => 'deleteDetalleVenta',
+    'middleware' => 'auth',
+    'uses' => '\App\Http\Controllers\DetalleVentaController@deleteDetalleVenta'
+]);
+
+Route::get('/icliente',[App\Http\Controllers\GeneradorController::class, 'imprimirCliente'])->name('icliente');
+
+Route::get('/icategoria',[App\Http\Controllers\GeneradorController::class, 'imprimirCategoria'])->name('icategoria');

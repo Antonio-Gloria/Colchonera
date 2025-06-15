@@ -17,6 +17,15 @@
                    </ul>
                </div>
            @endif
+           <div class="form-group mb-3">
+            <label for="cliente_id" class="form-label">Cliente</label>
+            <select class="form-control" id="cliente_id" name="cliente_id" required>
+                <option value="" disabled selected>Selecciona un cliente</option>
+                @foreach ($clientes as $cliente)
+                <option value="{{ $cliente->id}}">{{$cliente->nombre}}</option>
+                @endforeach
+            </select>
+           </div>
            <div class="form-group">
                <label for="fecha">Fecha</label>
                <input type="date" class="form-control" id="fecha" name="fecha" value="{{old('fecha')}}" />
@@ -27,9 +36,9 @@
            </div>
            <div class="form-group">
                <label for="estado">Estado</label>
-               <input type="number" class="form-control" id="estado" name="estado" value="{{old('estado')}}"/>
+               <input type="text" class="form-control" id="estado" name="estado" value="{{old('estado')}}"/>
            </div>           
-           <button type="submit" class="btn btn-success">Guardar reseña</button>
+           <button type="submit" class="btn btn-success">Guardar venta</button>
        </form>
    </div>
 </div>

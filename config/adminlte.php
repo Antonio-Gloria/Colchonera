@@ -327,27 +327,113 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],*/
+        
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        /*[
-            'text' => 'Editoriales',
+            'text' => 'Clientes',
             'icon' => 'fas fa-fw fa-user',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'route' => 'editoriales.index',
+                    'route' => 'clientes.index',
                 ],
                 [
                     'text' => 'Crear',
-                    'route' => 'editoriales.create',
+                    'route' => 'clientes.create',
+                ],
+                [
+                    'text' => 'Crear PDF',
+                    'route' => 'icliente',
                 ],
             ],
-        ],*/
+        ],
+        [
+            'text' => 'Categorias',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'categorias.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'categorias.create',
+                ],
+                [
+                    'text' => 'Crear PDF',
+                    'route' => 'icategoria',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Provedoores',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'proveedors.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'proveedors.create',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Productos',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'productos.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'productos.create',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Reseñas',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'reseñas.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'reseñas.create',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Ventas',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'ventas.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'ventas.create',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Detalle de venta',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'detalleventas.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'detalleventas.create',
+                ],
+            ],
+        ],
         ['header' => 'account_settings'],
         ['header' => 'account_settings'],
         [
