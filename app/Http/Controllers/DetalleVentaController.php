@@ -16,7 +16,7 @@ class DetalleVentaController extends Controller
      */
     public function index()
     {
-        $detalleventas = Venta::where('status', 1)->get();
+        $detalleventas = DetalleVenta::where('status', 1)->get();
         return view('detalleventa.index', ['detalleventas' => $this->cargarDT($detalleventas)]);
     }
 
@@ -24,7 +24,7 @@ class DetalleVentaController extends Controller
     {
         $detalleventas = [];
         foreach ($consulta as $key => $value) {
-            $actualizar = route('ventas.edit', $value['id']);
+            $actualizar = route('detalleventas.edit', $value['id']);
             $acciones = '
            <div class="btn-acciones">
                <div class="btn-circle">
@@ -42,7 +42,7 @@ class DetalleVentaController extends Controller
                 $acciones,
                 $value['id'],
                 $value['venta_id'],
-                $value['producto_id'],
+                $value->producto->nombre ?? 'Sin nombre',
                 $value['cantidad'],
                 $value['precio_unitario'],
             );

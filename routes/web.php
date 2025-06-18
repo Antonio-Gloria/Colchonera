@@ -48,5 +48,9 @@ Route::get('/delete-detalleventa/{detalleventa_id}', [
 ]);
 
 Route::get('/icliente',[App\Http\Controllers\GeneradorController::class, 'imprimirCliente'])->name('icliente');
-
 Route::get('/icategoria',[App\Http\Controllers\GeneradorController::class, 'imprimirCategoria'])->name('icategoria');
+Route::get('/iproveedor',[App\Http\Controllers\GeneradorController::class, 'imprimirProveedor'])->name('iproveedor');
+Route::get('/iproducto',[App\Http\Controllers\GeneradorController::class, 'imprimirProducto'])->name('iproducto');
+Route::get('/iproveedor',[App\Http\Controllers\GeneradorController::class, 'imprimirProveedor'])->name('iproveedor');
+Route::get('/iproveedor',[App\Http\Controllers\GeneradorController::class, 'imprimirProveedor'])->name('iproveedor');
+Route::get('/iproveedor',[App\Http\Controllers\GeneradorController::class, 'imprimirProveedor'])->name('iproveedor');

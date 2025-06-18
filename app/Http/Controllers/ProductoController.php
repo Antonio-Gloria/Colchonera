@@ -46,8 +46,8 @@ class ProductoController extends Controller
                 $value['precio'],
                 $value['tamaño'],
                 $value['tela'],
-                $value['categoria_id'],
-                $value['proveedor_id']
+                $value->categoria->nombre ?? 'Sin nombre',
+                $value->proveedor->nombre ?? 'Sin nombre',
             );
         }
         return $productos;

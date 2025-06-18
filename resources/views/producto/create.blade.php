@@ -31,10 +31,17 @@
                     <label for="precio">Precio</label>
                     <input type="number" class="form-control" id="precio" name="precio" value="{{ old('precio') }}">
                 </div>
+
                 <div class="form-group">
                     <label for="tamaño">Tamaño</label>
-                    <input type="text" class="form-control" id="tamaño" name="tamaño" value="{{ old('tamaño') }}">
+                    <select class="form-control" id="tamaño" name="tamaño">
+                        <option value="1" {{ old('tamaño') == '1' ? 'selected' : '' }}>Individual</option>
+                        <option value="2" {{ old('tamaño') == '2' ? 'selected' : '' }}>Matrimonial</option>
+                        <option value="3" {{ old('tamaño') == '3' ? 'selected' : '' }}>Queen Size</option>
+                        <option value="4" {{ old('tamaño') == '4' ? 'selected' : '' }}>King Size</option>
+                    </select>
                 </div>
+
                 <div class="form-group">
                     <label for="tela">Tela</label>
                     <input type="text" class="form-control" id="tela" name="tela"value="{{ old('tela') }}">

@@ -18,7 +18,7 @@
                </div>
            @endif
            <div class="form-group mb-3">
-            <label for="venta_id" class="form-label">Venta</label>
+            <label for="venta_id" class="form-label">Id de la Venta</label>
             <select class="form-control" id="venta_id" name="venta_id" required>
                 <option value="" disabled selected>Selecciona una venta</option>
                 @foreach ($ventas as $venta)

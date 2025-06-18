@@ -40,9 +40,14 @@
                     <input type="number" class="form-control" id="total" name="total" value="{{ $venta->total }}" />
                 </div>
                 <div class="form-group">
-                    <label for="estado">Estado</label>
-                    <input type="text" class="form-control" id="estado" name="estado" value="{{ $venta->estado }}" />
-                </div>
+    <label for="estado">Estado</label>
+    <select class="form-control" id="estado" name="estado">
+        <option value="Completado" {{ $venta->estado == 'Completado' ? 'selected' : '' }}>Completado</option>
+        <option value="Enviado" {{ $venta->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+        <option value="Cancelado" {{ $venta->estado == 'Cancelado' ? 'selected' : '' }}>Cancelado</option>
+    </select>
+</div>
+
         </div>
         <button type="submit" class="btn btn-success">Actualizar venta</button>
         </form>

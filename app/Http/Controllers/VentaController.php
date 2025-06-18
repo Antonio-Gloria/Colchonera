@@ -40,7 +40,7 @@ class VentaController extends Controller
             $ventas[$key] = array(
                 $acciones,
                 $value['id'],
-                $value['cliente_id'],
+                $value->cliente->nombre ?? 'Sin nombre',
                 $value['fecha'],
                 $value['total'],
                 $value['estado'],

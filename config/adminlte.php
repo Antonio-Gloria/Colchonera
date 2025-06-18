@@ -376,6 +376,10 @@ return [
                     'text' => 'Crear',
                     'route' => 'proveedors.create',
                 ],
+                [
+                    'text' => 'Crear PDF',
+                    'route' => 'iproveedor',
+                ],
             ],
         ],
         [
@@ -390,19 +394,9 @@ return [
                     'text' => 'Crear',
                     'route' => 'productos.create',
                 ],
-            ],
-        ],
-        [
-            'text' => 'Reseñas',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
                 [
-                    'text' => 'Listar',
-                    'route' => 'reseñas.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'reseñas.create',
+                    'text' => 'Crear PDF',
+                    'route' => 'iproducto',
                 ],
             ],
         ],
@@ -431,6 +425,20 @@ return [
                 [
                     'text' => 'Crear',
                     'route' => 'detalleventas.create',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Reseñas',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'reseñas.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'reseñas.create',
                 ],
             ],
         ],

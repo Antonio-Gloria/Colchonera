@@ -35,9 +35,14 @@
                <input type="number" class="form-control" id="total" name="total" value="{{old('total')}}"/>
            </div>
            <div class="form-group">
-               <label for="estado">Estado</label>
-               <input type="text" class="form-control" id="estado" name="estado" value="{{old('estado')}}"/>
-           </div>           
+    <label for="estado">Estado</label>
+    <select class="form-control" id="estado" name="estado">
+        <option value="1" {{ old('estado') == '1' ? 'selected' : '' }}>Completado</option>
+        <option value="2" {{ old('estado') == '2' ? 'selected' : '' }}>Enviado</option>
+        <option value="3" {{ old('estado') == '3' ? 'selected' : '' }}>Cancelado</option>
+    </select>
+</div>
+          
            <button type="submit" class="btn btn-success">Guardar venta</button>
        </form>
    </div>

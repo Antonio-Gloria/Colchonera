@@ -19,11 +19,11 @@
             @endif
         </div>
         <div class="row">
-            <h2>Lista de Ventas</h2>
+            <h2>Lista de Detalle de Ventas</h2>
             <hr>
             <br>
             <p align="right">
-                <a href="{{ route('ventas.create') }}" class="btn btn-success">Agregar Venta</a>
+                <a href="{{ route('detalleventas.create') }}" class="btn btn-success">Agregar Detalle de Venta</a>
                 <a href="{{ route('home') }}" class="btn btn-primary">
                     Regresar
                 </a>
@@ -32,11 +32,11 @@
                 <thead>
                     <tr>
                         <th>Acciones</th>
+                        <th>Id</th>
                         <th>Id Venta</th>
-                        <th>Nombre</th>
-                        <th>Fecha</th>
-                        <th>Total</th>
-                        <th>Estado</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,11 +77,11 @@
         function modal(parametro) {
             console.log(parametro);
             $('#nombre').html(parametro);
-            let url = "{{ route('deleteVenta', ':id') }}";
+            let url = "{{ route('deleteDetalleVenta', ':id') }}";
             url = url.replace(':id', parametro);
             document.getElementById('borrar').href = url;
         }
-        var data = @json($ventas);
+        var data = @json($detalleventas);
         $(document).ready(function() {
             // version de jquery
             console.log($.fn.jquery);
