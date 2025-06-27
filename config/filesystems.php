@@ -66,7 +66,12 @@ return [
             'url' => env('APP_URL') . '/storage/sales_pdfs',
             'visibility' => 'private',
         ],
-
+        'financial_documents' => [
+            'driver' => 'local',
+            'root' => storage_path('app/financial_documents'),
+            'url' => env('APP_URL') . '/storage/financial_documents',
+            'visibility' => 'private',
+        ],
 
         'private' => [
             'driver' => 'local',

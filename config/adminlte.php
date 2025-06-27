@@ -507,6 +507,23 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Documentos Financieros',
+            'icon' => 'fas fa-fw fa-file-invoice-dollar',
+            'submenu' => [
+                [
+                    'text' => 'Listar Todos',
+                    'route' => 'financial-documents.index',
+                    'icon' => 'fas fa-fw fa-list'
+                ],
+                [
+                    'text' => 'Nuevo Documento',
+                    'route' => 'financial-documents.create',
+                    'icon' => 'fas fa-fw fa-plus-circle'
+                ],
+               
+            ],
+        ],
         ['header' => 'account_settings'],
         ['header' => 'account_settings'],
         [

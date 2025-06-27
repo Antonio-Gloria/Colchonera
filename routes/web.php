@@ -91,3 +91,12 @@ Route::middleware([])->group(function () {
     Route::delete('sales-income/{salesIncome}', [\App\Http\Controllers\SalesIncomePdfController::class, 'destroy'])
         ->name('sales-income.destroy');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('financial-documents', \App\Http\Controllers\FinancialDocumentController::class);
+    Route::get('financial-documents/type/{type}', [\App\Http\Controllers\FinancialDocumentController::class, 'byType'])
+         ->name('financial-documents.type');
+    // Add the download route
+    Route::get('financial-documents/download/{id}', [\App\Http\Controllers\FinancialDocumentController::class, 'download'])
+         ->name('financial-documents.download');
+});
