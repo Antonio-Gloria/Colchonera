@@ -73,9 +73,21 @@ Route::get('/', function () {
     return view('menu'); // muestra la vista pública
 });
 
-Route::get('/pdfs', [PdfAssetController::class, 'index'])->name('pdf.index');
-Route::get('/pdfs/create', [PdfAssetController::class, 'create'])->name('pdf.create');
-Route::post('/pdfs', [PdfAssetController::class, 'store'])->name('pdf.store');
-Route::get('/pdfs/{id}', [PdfAssetController::class, 'show'])->name('pdf.show');
-Route::get('/pdfs/file/{filename}', [PdfAssetController::class, 'getPdf'])->name('pdf.get');
-Route::delete('/pdfs/{id}', [PdfAssetController::class, 'destroy'])->name('pdf.destroy');
+Route::middleware([])->group(function () {
+    Route::resource('sales-income', \App\Http\Controllers\SalesIncomePdfController::class)
+        ->except(['destroy'])
+        ->names([
+            'index' => 'sales-income.index',
+            'create' => 'sales-income.create',
+            'store' => 'sales-income.store',
+            'show' => 'sales-income.show',
+            'edit' => 'sales-income.edit',
+            'update' => 'sales-income.update'
+        ]);
+
+    Route::get('sales-income/{salesIncome}/download', [\App\Http\Controllers\SalesIncomePdfController::class, 'download'])
+        ->name('sales-income.download');
+
+    Route::delete('sales-income/{salesIncome}', [\App\Http\Controllers\SalesIncomePdfController::class, 'destroy'])
+        ->name('sales-income.destroy');
+});

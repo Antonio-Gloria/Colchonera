@@ -60,6 +60,12 @@ return [
             'driver' => 'local',
             'root' => public_path('storage/pdfs'),
         ],
+        'sales_pdfs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/sales_pdfs'),
+            'url' => env('APP_URL') . '/storage/sales_pdfs',
+            'visibility' => 'private',
+        ],
 
 
         'private' => [
