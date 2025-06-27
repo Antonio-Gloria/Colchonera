@@ -44,7 +44,9 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Tamaño</th>
                     <th scope="col">Tela</th>
-                    <th acope="col">Stock</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Proveedor</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +59,10 @@
                         <td>{{ $producto->tamaño }}</td>
                         <td>{{ $producto->tela }}</td>
                         <td>{{ $producto->Stock }}</td>
+                        <td>{{ $producto->categoria->nombre }}</td>
+                        <td>{{ $producto->proveedor->nombre }}</td>
+                         
+        
                     </tr>
                 @endforeach
             </tbody>

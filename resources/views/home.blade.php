@@ -1,4 +1,14 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+
+
+<link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+
+
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])   
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+@endsection
 
 @section('content')
 <div class="container">

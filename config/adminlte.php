@@ -329,119 +329,168 @@ return [
         ],*/
         
         [
-            'text' => 'Clientes',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'clientes.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'clientes.create',
-                ],
-                [
-                    'text' => 'Crear PDF',
-                    'route' => 'icliente',
-                ],
+        'text' => 'Clientes',
+        'icon' => 'fas fa-fw fa-users',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'clientes.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'clientes.create',
+                'icon' => 'fas fa-fw fa-user-plus'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'icliente',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
-        [
-            'text' => 'Categorias',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'categorias.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'categorias.create',
-                ],
-                [
-                    'text' => 'Crear PDF',
-                    'route' => 'icategoria',
-                ],
+    ],
+       [
+        'text' => 'Categorias',
+        'icon' => 'fas fa-fw fa-tags',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'categorias.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'categorias.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'icategoria',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
-        [
-            'text' => 'Provedoores',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'proveedors.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'proveedors.create',
-                ],
-                [
-                    'text' => 'Crear PDF',
-                    'route' => 'iproveedor',
-                ],
+    ],
+    [
+        'text' => 'Proveedores',
+        'icon' => 'fas fa-fw fa-truck',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'proveedors.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'proveedors.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'iproveedor',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
-        [
-            'text' => 'Productos',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'productos.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'productos.create',
-                ],
-                [
-                    'text' => 'Crear PDF',
-                    'route' => 'iproducto',
-                ],
+    ],
+    [
+        'text' => 'Productos',
+        'icon' => 'fas fa-fw fa-box-open',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'productos.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'productos.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'iproducto',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
-        [
-            'text' => 'Ventas',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'ventas.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'ventas.create',
-                ],
+    ],
+    [
+        'text' => 'Ventas',
+        'icon' => 'fas fa-fw fa-cash-register',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'ventas.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'ventas.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'iventa',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
-        [
-            'text' => 'Detalle de venta',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'detalleventas.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'detalleventas.create',
-                ],
+    ],
+    [
+        'text' => 'Detalle de venta',
+        'icon' => 'fas fa-fw fa-receipt',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'detalleventas.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'detalleventas.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'idetalleventa',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
-        [
-            'text' => 'Reseñas',
-            'icon' => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'route' => 'reseñas.index',
-                ],
-                [
-                    'text' => 'Crear',
-                    'route' => 'reseñas.create',
-                ],
+    ],
+    [
+        'text' => 'Reseñas',
+        'icon' => 'fas fa-fw fa-star',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'reseñas.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'reseñas.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+            [
+                'text' => 'Crear PDF',
+                'route' => 'ireseña',
+                'icon' => 'fas fa-fw fa-file-pdf'
             ],
         ],
+    ],
+    [
+        'text' => 'Miniaturas',
+        'icon' => 'fas fa-fw fa-star',
+        'submenu' => [
+            [
+                'text' => 'Listar',
+                'route' => 'asset.index',
+                'icon' => 'fas fa-fw fa-list'
+            ],
+            [
+                'text' => 'Crear',
+                'route' => 'asset.create',
+                'icon' => 'fas fa-fw fa-plus-circle'
+            ],
+        ],
+    ],
         ['header' => 'account_settings'],
         ['header' => 'account_settings'],
         [

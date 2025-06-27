@@ -9,6 +9,9 @@ use App\Models\Cliente;
 use App\Models\Categoria;
 use App\Models\Proveedor;
 use App\Models\Producto;
+use App\Models\Venta;
+use App\Models\DetalleVenta;
+use App\Models\Reseña;
 
 class GeneradorController extends Controller
 {
@@ -44,5 +47,29 @@ class GeneradorController extends Controller
         //$today = Carbon::now()->format('d/m/Y');
         $pdf = PDF::loadview('iproducto', compact('productos'));
         return $pdf->download('iproducto.pdf');
+    } 
+
+    public function imprimirVenta()
+    {
+        $ventas = Venta::WHERE('status', '1')->get();
+        //$today = Carbon::now()->format('d/m/Y');
+        $pdf = PDF::loadview('iventa', compact('ventas'));
+        return $pdf->download('iventa.pdf');
+    } 
+
+    public function imprimirDetalleVenta()
+    {
+        $detalleventas = DetalleVenta::WHERE('status', '1')->get();
+        //$today = Carbon::now()->format('d/m/Y');
+        $pdf = PDF::loadview('idetalleventa', compact('detalleventas'));
+        return $pdf->download('idetalleventa.pdf');
+    } 
+
+    public function imprimirReseña()
+    {
+        $reseñas = Reseña::WHERE('status', '1')->get();
+        //$today = Carbon::now()->format('d/m/Y');
+        $pdf = PDF::loadview('ireseña', compact('reseñas'));
+        return $pdf->download('ireseña.pdf');
     } 
 }

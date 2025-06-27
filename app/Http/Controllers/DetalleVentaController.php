@@ -116,7 +116,7 @@ class DetalleVentaController extends Controller
             'venta_id' => 'required|exists:ventas,id',
             'producto_id' => 'required|exists:productos,id',
             'cantidad' => 'required',
-            'precio_unitrario' => 'required',
+            'precio_unitario' => 'required',
 
         ]);
 
